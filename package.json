@@ -1,0 +1,23 @@
+{
+  "name": "reacthookinclass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pwtt123/reactHookInClass.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pwtt123/reactHookInClass/issues"
+  },
+  "homepage": "https://github.com/pwtt123/reactHookInClass#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "react": "^16.13.1"
+  }
+}
