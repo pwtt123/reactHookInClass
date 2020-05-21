@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.13.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.13.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/javascript" src="../node_modules/underscore/underscore-min.js"></script>
+    <script src="../browser.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+
+    const Page=new ReactHookInClass({
+        componentWillMount(){
+            console.log("componentWillMount")
+        },
+        componentWillUnmount(){
+            console.log("componentWillUnmount")
+        },
+        componentDidMount(){
+            console.log("componentDidMount",this,this.props,this.state);
+        },
+        shouldComponentUpdate(nextProps, nextState){
+            console.log("shouldComponentUpdate",nextProps, nextState,this.props,this.state)
+        },
+        componentDidUpdate(prevProps,prevState){
+            console.log("componentDidUpdate",prevProps, prevState,this.props,this.state)
+        },
+        //toTest
+        props:{
+            value:String
+        },
+        state:{
+            count:0,
+            val:undefined,
+        },
+        computed:{
+            doubleCount(xUseMemo){
+                xUseMemo(()=>{return this.count*2},[this.count]);
+            }
+        },
+        methods:{
+            onBtnClick(xUseCallback){
+                xUseCallback(()=>{this.$setState({count:this.count+1})},[this.count])
+            },
+
+            clickChangeStateButton(xUseCallback){
+                xUseCallback(()=>{
+                    this.$refs.changeStateButton.current.click()
+                })
+            }
+        },
+        refs:{
+            changeStateButton:{}
+        },
+        watch:{
+            setValue2State(xUseEffect){
+                xUseEffect(()=>{this.$setState({val:this.props.value})},[this.props.value])
+            },
+        },
+        render(){
+            return (<div>
+                <button onClick={()=>this.clickChangeStateButton()}>clickChangeStateButton</button>
+                <br/>
+                <button ref={this.$refs.changeStateButton} onClick={()=>this.onBtnClick()}>change state</button>
+                <br/>
+                props.value:{this.props.value}
+                <br/>
+                state.value:{this.val}
+                <br/>
+                count:{this.count};
+                <br/>
+                doubleCount:{this.doubleCount}
+            </div>)
+        }
+    });
+
+
+
+    function App() {
+        const [data,setData]=useState(5);
+        return (
+                <div >
+                    <button  onClick={()=>setData(data+1)} >change props</button>
+                    <Page value={data} />
+                </div>
+        );
+    }
+
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById('example')
+    );
+</script>
+
+</body>
+</html>

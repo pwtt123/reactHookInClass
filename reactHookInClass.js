@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef,useMemo,useCallback,useLayoutEffect,forwardRef,useImperativeHandle} from 'react';
-import _ from 'lodash'
+import _ from 'underscore'
 /*
  * todo
  * useLayoutEffect,forwardRef,useImperativeHandle
@@ -7,11 +7,11 @@ import _ from 'lodash'
  * useReducer
  * */
 
-export class HookClass{
+export default class ReactHookInClass{
     _checkParam(options){
         // 会执行2次，第二次不检查
         let zMultipleList = [];
-        _.reduce(_.concat(_.keys(options.methods),_.keys(this._sourceState),_.keys(options.computed)),(m,v)=>{
+        _.reduce([].concat(_.keys(options.methods),_.keys(this._sourceState),_.keys(options.computed)),(m,v)=>{
             if(m[v])zMultipleList.push(v);
             return _.extend(m,{[v]:true})
         },{});
