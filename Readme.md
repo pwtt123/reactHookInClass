@@ -1,6 +1,24 @@
-# reactHookInClass
+# reacthookinclass
 
-使用react hook 比较反直觉，reactHookInClass 可以帮助你用类似vue 的 new Class() 写法 实现 react hook 的 function
+reacthookinclass 可以帮助你用类似vue 的 new Class() 写法 实现 react hook 的 function
+
+
+
+#### why use reacthookinclass
+
+刚接触 react hook 的同学一定会觉得非常反直觉，无状态的函数居然会有自己状态，不得不进行大量实践去熟悉其思想。
+
+同时写函数式组件时，关注点会被更多业务以外的地方分散，定义一个state，是直接定义 还是用useState，什么时候要用useMemo 什么时候用 useCallback...  
+
+一个函数里面定义了一堆变量，不强制分类，也不强制优化，接手的人看的头都疼...
+
+出问题调试的时候，hook用法不对也成为一个可能性，不得不多打一个断点...
+
+其实关键原因是我们应该把关注点都放在业务上，而是否要使用hook，使用什么hook，不应该是在写业务代码时需要考虑的
+
+所以用 reacthookinclass 可以避免直接使用hook，只需要关注业务，定义好一切，函数归函数，state归state，reacthookinclass 会帮你使用hook 实现 函数式组件。
+
+
 
 
 ## Getting start
@@ -9,7 +27,7 @@
 Install with npm:
 
 ```
-npm install reactHookInClass
+npm install reacthookinclass
 ```
 
 Then `require` and use it in your code:
@@ -185,8 +203,8 @@ state:{value:"1",
 	name:"test"	
 },
 methods:{
-    formatValue(useCallback,format){
-        useCallback(()=>{this.$setState({value:this.value+format})},[this.value])
+    formatValue(useCallback){
+        useCallback((format)=>{this.$setState({value:this.value+format})},[this.value])
     }
 },
 render(){
