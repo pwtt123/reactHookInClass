@@ -6,17 +6,19 @@ reacthookinclass 可以帮助你用类似vue 的 new Class() 写法 实现 react
 
 #### why use reacthookinclass
 
-刚接触 react hook 的同学一定会觉得非常反直觉，无状态的函数居然会有自己状态，不得不进行大量实践去熟悉其思想。
+react hook 在无状态函数中实现自己的状态非常反直觉，
 
-同时写函数式组件时，关注点会被更多业务以外的地方分散，定义一个state，是直接定义 还是用useState，什么时候要用useMemo 什么时候用 useCallback...  
+写函数式组件时，关注点会被更多业务以外的地方分散，比如是否需要使用hook，使用何种hook
 
-一个函数里面定义了一堆变量，不强制分类，也不强制优化，接手的人看的头都疼...
+不强制分类定义，也不强制使用hook优化，代码难以维护
 
-出问题调试的时候，hook用法不对也成为一个可能性，不得不多打一个断点...
+出问题调试的时候，hook用法不正确也成为一个可能性，不得不多打一个断点
 
-其实关键原因是我们应该把关注点都放在业务上，而是否要使用hook，使用什么hook，不应该是在写业务代码时需要考虑的
+其实在写业务组件时应该把关注点更多的放在业务上，hook的用法应该在更高层面比如框架的层面去关心
 
-所以用 reacthookinclass 可以避免直接使用hook，只需要关注业务，定义好一切，函数归函数，state归state，reacthookinclass 会帮你使用hook 实现 函数式组件。
+所以使用 reacthookinclass 可以避免直接使用hook，只需要关注业务即可，使用者甚至不需要了解hook
+
+用法对vue 和 react class 使用者都比较友好
 
 
 
@@ -154,13 +156,29 @@ render(){
 }
 ```
 
+#### $setState
+
+和 react 的 setState 一致，
+
+```
+componentDidMount(){
+    this.$setState({value:"2"})
+},
+state:{value:"1",
+	name:"test"	
+},
+render(){
+    return(<div>{this.value}---{this.name}</div>)
+}
+```
+
 
 
 #### computed
 
 类似于vue的计算属性
 
-其每个属性必须是一个非匿名函数
+其每个属性必须是一个函数
 
 函数的第一个参数 为 函数 ，使用方式和React.useMemo 一致
 
@@ -188,7 +206,7 @@ render(){
 
 类似于vue的methods
 
-其每个属性必须是一个非匿名函数
+其每个属性必须是一个函数
 
 函数的第一个参数 为 函数 ，使用方式和React.useCallBack一致
 
@@ -217,7 +235,7 @@ render(){
 
 类似于vue的watch
 
-其每个属性必须是一个非匿名函数
+其每个属性必须是一个函数
 
 函数的第一个参数 为 函数 ，使用方式和React.useEffect一致
 
@@ -249,9 +267,7 @@ return 一段 jsx  用来渲染html
 
 
 
-#### refs
-
-其每个属性必须是一个非匿名函数
+#### refs，$ref
 
 目前只有定义作用，将来会通过 useLayoutEffect,forwardRef,useImperativeHandle 增加详细定义
 
