@@ -38,6 +38,7 @@ import _ from "underscore"
 import React from 'react'
 impport HookClass from 'reactHookInClass'
 
+// your code like this
 const Page=new HookClass({
     componentWillMount(){
         console.log("componentWillMount")
@@ -104,10 +105,9 @@ const Page=new HookClass({
 });
 
 
-ReactDOM.render(
-  <React.StrictMode>
+ReactDOM.render(<div>
     <Page />
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root')
 );
 
@@ -213,7 +213,7 @@ render(){
 }
 ```
 
-#### methods
+#### watch
 
 类似于vue的watch
 
@@ -223,7 +223,7 @@ render(){
 
 useEffect(event,memo)
 
-​	event : Function  一个函数
+​	event : Function  一个函数，当event 函数中 return 一个函数时，返回的函数会在下次event执行(或销毁)之前执行
 
 ​	memo：Array ，用于判断是否触发event，为空则每次都会重新触发
 
@@ -240,6 +240,12 @@ render(){
     return(<div>{this.value}---{this.name}</div>)
 }
 ```
+
+#### render
+
+react class 组件的render  
+
+return 一段 jsx  用来渲染html
 
 
 
@@ -276,11 +282,16 @@ render(){
 
 模拟react的生命周期,目前支持以下几种
 
- componentWillMount()
- componentWillUnmount()
- componentDidMount()
- shouldComponentUpdate(nextProps, nextState)
- componentDidUpdate(prevProps,prevState)
+1. omponentWillMount()
+2. componentWillUnmount()
+3.  componentDidMount()
+4.  shouldComponentUpdate(nextProps, nextState)
+5.  componentDidUpdate(prevProps,prevState)
+
+ 
+
+
+
 
 
 

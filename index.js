@@ -11,17 +11,18 @@ export default class ReactHookInClass{
     _checkParam(options){
         // 会执行2次，第二次不检查
         let zMultipleList = [];
-        _.reduce([].concat(_.keys(options.methods),_.keys(this._sourceState),_.keys(options.computed)),(m,v)=>{
+        _.reduce(this._officalParams.concat(_.keys(options.methods),_.keys(options.state),_.keys(options.computed)),(m,v)=>{
             if(m[v])zMultipleList.push(v);
             return _.extend(m,{[v]:true})
         },{});
-        if(zMultipleList.length)console.warn(`[${String(zMultipleList)}] was already defined  in  state or computed or methods`)
+        if(zMultipleList.length)console.warn(`[${String(zMultipleList)}] was already  defined  in  state or computed or methods`)
     };
+    _officalParams=["props","state",'computed','methods','watch','refs','componentWillMount','componentWillUnmount',
+        'componentDidMount','shouldComponentUpdate','componentDidUpdate',"render"];
     _sourceState={};
     _preState={};
     _preProps={};
     _openMethods={
-
     };
     _computerList={};
     _watcherList={};
@@ -44,14 +45,14 @@ export default class ReactHookInClass{
                 return xClass.name || xClass
             });
             if(!zReturn){
-                console.warn(`${k} should be ${zTypes} type`);
+                console.warn(`${k} should be ${zTypes} type, but got ${typeof v}`);
                 return false
             }
         }
         if(_.isFunction(options.validator)){
             zReturn=options.validator(v);
             if(!zReturn){
-                console.warn(`props.${k} does not pass validation`);
+                console.warn(`props.${k} does not pass the validation`);
                 return false
             }
         }
