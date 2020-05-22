@@ -38,7 +38,7 @@ Then `require` and use it in your code:
 ```
 import _ from "underscore"
 import React from 'react'
-impport HookClass from 'reactHookInClass'
+impport HookClass from 'reacthookinclass'
 
 // your code like this
 const Page=new HookClass({
